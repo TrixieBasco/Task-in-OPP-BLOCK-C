@@ -1,0 +1,49 @@
+using System;
+
+class Student
+{
+    // Properties
+    public string Name;
+    public int Age;
+    public double Grade;
+
+    // Method to show student info
+    public void DisplayInfo()
+    {
+        Console.WriteLine("Student Name: " + Name);
+        Console.WriteLine("Age: " + Age);
+        Console.WriteLine("Grade: " + Grade);
+    }
+
+    // Method to check pass/fail
+    public bool IsPassed()
+    {
+        if (Grade >= 75)
+            return true;
+        else
+            return false;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create student object
+        Student student = new Student();
+
+        // Assign values
+        student.Name = "Trixie";
+        student.Age = 20;
+        student.Grade = 86.5;
+
+        // Display info
+        student.DisplayInfo();
+
+        // Display pass/fail status
+        if (student.IsPassed())
+            Console.WriteLine("Status: Passed");
+        else
+            Console.WriteLine("Status: Failed");
+    }
+}
