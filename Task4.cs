@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        char continueChoice = 'Y';
+        char choice = 'Y';
 
-        while (continueChoice == 'Y' || continueChoice == 'y')
+        while (choice == 'Y' || choice == 'y')
         {
             Console.WriteLine("Press any following key to perform an arithmetic operation:");
             Console.WriteLine("1 - Addition");
@@ -14,42 +14,43 @@ class Program
             Console.WriteLine("3 - Multiplication");
             Console.WriteLine("4 - Division");
 
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int operation = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Enter Value 1: ");
-            double value1 = Convert.ToDouble(Console.ReadLine());
+            double num1 = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("Enter Value 2: ");
-            double value2 = Convert.ToDouble(Console.ReadLine());
+            double num2 = Convert.ToDouble(Console.ReadLine());
 
             double result = 0;
-            string symbol = "";
 
-            switch (choice)
+            switch (operation)
             {
                 case 1:
-                    result = Add(value1, value2);
-                    symbol = "+";
+                    result = Add(num1, num2);
+                    Console.WriteLine($"{num1} + {num2} = {result}");
                     break;
 
                 case 2:
-                    result = Subtract(value1, value2);
-                    symbol = "-";
+                    result = Subtract(num1, num2);
+                    Console.WriteLine($"{num1} - {num2} = {result}");
                     break;
 
                 case 3:
-                    result = Multiply(value1, value2);
-                    symbol = "*";
+                    result = Multiply(num1, num2);
+                    Console.WriteLine($"{num1} * {num2} = {result}");
                     break;
 
                 case 4:
-                    if (value2 == 0)
+                    if (num2 != 0)
                     {
-                        Console.WriteLine("Error: Division by zero is not allowed.");
-                        break;
+                        result = Divide(num1, num2);
+                        Console.WriteLine($"{num1} / {num2} = {result}");
                     }
-                    result = Divide(value1, value2);
-                    symbol = "/";
+                    else
+                    {
+                        Console.WriteLine("Cannot divide by zero.");
+                    }
                     break;
 
                 default:
@@ -57,18 +58,12 @@ class Program
                     break;
             }
 
-            if (choice >= 1 && choice <= 4 && !(choice == 4 && value2 == 0))
-            {
-                Console.WriteLine($"{value1} {symbol} {value2} = {result}");
-            }
-
             Console.Write("Do you want to continue again (Y/N)? ");
-            continueChoice = Console.ReadLine()[0];
+            choice = Console.ReadLine()[0];
             Console.WriteLine();
         }
     }
 
-    // Separate methods for each operation
     static double Add(double a, double b)
     {
         return a + b;
@@ -88,5 +83,4 @@ class Program
     {
         return a / b;
     }
-}
 }
